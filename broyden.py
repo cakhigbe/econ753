@@ -19,19 +19,20 @@ def broyden(f, x0, tol=1e-8, max_iter=100):
     x = np.array(x0, dtype=float) # convert x0 to numpy array
     n = len(x)
     # inital jacobian approximation
-    B = np.eye(n)
+    A = np.eye(n)
     for i in range(max_iter):
         # evaluate at current guess
         F = f(x) 
         # solve B delta x = -F for update step
-        delta = np.linalg.solve(B, -F) 
+        delta = np.linalg.solve(A, -F) 
         x_new = x + delta # update
+        # check convergence
         if np.linalg.norm(delta, ord=2) < tol:
             return x_new, i+1
         # update jacobian with broyden's method
         F_new = f(x_new) # evaluate at new guess
         y = F_new - F
-        B += np.outer((y - B @ delta), delta) / np.dot(delta, delta) # update B using broyden's formula
+        A += np.outer((y - A @ delta), delta) / np.dot(delta, delta) # update A using broyden's formula
         x = x_new
     raise ValueError("fail to converge")
 
@@ -42,4 +43,12 @@ x0 = [2.0, 1.0]
 sol_broyden, iter_broyden = broyden(f, x0)
 print("Broyden Solution:", sol_broyden)
 print("Iterations:", iter_broyden)
+
+"""
+use broyden when:
+- computing derivatives is expensive
+- memory concerns
+- problem is well-behaved
+
+"""
     
