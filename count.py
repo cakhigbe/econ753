@@ -166,3 +166,12 @@ eigen_fin = np.linalg.eigvals(bhhh_hessian_fin)
 print("\n Eigenvalues Initial Hessian Approximation:", eigen_init)
 print("\n Eigenvalues Final Hessian Approximation:", eigen_fin)
 print(result_num.nfev)
+
+"""
+            Method  Iterations  Function Evaluations      Time  Constant       Age  Years Married  Religiousness  Occupation  Marriage Rating
+0   BFGS Numerical          17                   259  0.015973  2.506898 -0.038329       0.113949      -0.279351    0.068352        -0.368998
+1  BFGS Analytical          16                    23  0.001860  2.506898 -0.038329       0.113949      -0.279351    0.068352        -0.368998
+2      Nelder-Mead         648                  1016  0.034595  2.506898 -0.038329       0.113949      -0.279351    0.068352        -0.368998
+3             BHHH         103                   103  0.005669  2.506898 -0.038329       0.113949      -0.279351    0.068352        -0.368998
+4             NLLS          12                    12  0.000210  2.506898 -0.038329       0.113949      -0.279351    0.068352        -0.368998
+"""
